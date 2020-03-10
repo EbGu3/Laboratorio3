@@ -28,7 +28,7 @@ namespace Huffman.Controllers
 
         public async Task<string> Post(FileUploadAPI objFile)
         {
-            string[] Lines = { "First", "Second", "Third", };
+            string[] lines = { "ABRACADABRA" };
             try
             {
                 if(objFile.files.Length > 0)
@@ -41,7 +41,13 @@ namespace Huffman.Controllers
                     {
                         objFile.files.CopyTo(fileStream);
                         fileStream.Flush();
-                        return "\\Upload\\" + objFile.files.FileName;
+
+                        using (StreamWriter SW = new StreamWriter(fileStream))
+                        {
+                            System.IO.File.WriteAllLines("\\Upload\\" + objFile.files.FileName, lines);
+                        }
+
+                            return "\\Upload\\" + objFile.files.FileName;
                     }
 
                 }
