@@ -5,6 +5,7 @@ namespace Huffman2.Modelos
     {
         public char Caracter;
         public int Frecuencia;
+        public string CodigoPrefijo;
         public Double Probabilidad;
     }
 
